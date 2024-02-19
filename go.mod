@@ -3,7 +3,6 @@ module auxiliaryJ
 go 1.21.4
 
 require (
-	github.com/AndiHappy/auxiliaryG v0.1.5
 	github.com/AndiHappy/helpGo v0.0.1
 	github.com/PuerkitoBio/goquery v1.8.1
 	github.com/antchfx/htmlquery v1.3.0
