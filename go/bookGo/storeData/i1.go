@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// slice底层数据的变化
 func main() {
 	data := [...]int{1, 2, 3, 4, 5, 5, 5, 5, 5, 5} //数组
 	slice := data[0:1:7]                           // Slice data[low, high, max]

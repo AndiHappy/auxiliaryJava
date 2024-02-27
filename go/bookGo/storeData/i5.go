@@ -2,6 +2,7 @@ package main
 
 import "strconv"
 
+// 查看map的源码
 func main() {
 	m := make(map[string]int, 500)
 	for i := 0; i < 300; i++ {

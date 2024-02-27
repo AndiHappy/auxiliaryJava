@@ -5,6 +5,7 @@ import (
 	"github.com/AndiHappy/helpGo/util"
 )
 
+// slice数组的变化
 func main() {
 	slice := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 	s1 := slice[2:5]

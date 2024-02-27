@@ -12,6 +12,8 @@ func myAppendPtr(s *[]int) {
 	*s = append(*s, 100)
 	return
 }
+
+// slice作为方法的参数，
 func main() {
 	s := []int{1, 1, 1}
 	newS := myAppend(s)
