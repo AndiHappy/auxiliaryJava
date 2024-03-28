@@ -4,6 +4,10 @@ import java.util.Stack;
 
 public class Parenthesees {
 
+    public static void main(String[] args) {
+        System.out.println("test!");
+    }
+
     public  static boolean validateParentheses(String s){
         if(s == null || s.length() == 0) return false;
         Stack<Character> stack = new Stack<Character>();
@@ -18,5 +22,5 @@ public class Parenthesees {
         }
         return stack.isEmpty();
     }
-    
+
 }
