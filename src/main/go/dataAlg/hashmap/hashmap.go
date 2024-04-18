@@ -1,6 +1,7 @@
 package hashmap
 
 // twoSum hashmap time space
+// ##leetcode001
 func twoSum(nums []int, target int, args ...interface{}) []int {
 	if nums == nil || len(nums) < 2 {
 		return []int{}
