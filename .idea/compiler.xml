@@ -9,5 +9,8 @@
         <module name="auxiliaryHelp" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="z" target="20" />
+    </bytecodeTargetLevel>
   </component>
 </project>
