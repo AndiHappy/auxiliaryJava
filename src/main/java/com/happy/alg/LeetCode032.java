@@ -62,12 +62,6 @@ public class LeetCode032 {
 
     }
 
-  
-    public static int longestValidParentheses_dp(String s) {
-        int[] dp = new int[s.length()];
-        return  -1;
-    }
-
     public int longestValidParentheses_stack(String s) {
         int maxans = 0;
         Stack<Integer> stack = new Stack<>();

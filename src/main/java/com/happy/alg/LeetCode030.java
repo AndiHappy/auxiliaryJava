@@ -125,7 +125,7 @@ public class LeetCode030 {
 
     public static void main(String[] args) {
         System.out.println("keep happy");
-        List result = findSubstring("foofoobarfoo", new String[]{"foo","bar"});
+        List<Integer> result = findSubstring("foofoobarfoo", new String[]{"foo","bar"});
         System.out.println(result);
 
         result = findSubstring("foofoobarbarfoo", new String[]{"foo","bar"});

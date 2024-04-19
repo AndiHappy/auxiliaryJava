@@ -1,7 +1,5 @@
 package com.happy;
 
-import com.happy.util.ListNode;
-
 /**
  * Hello world!
  *
