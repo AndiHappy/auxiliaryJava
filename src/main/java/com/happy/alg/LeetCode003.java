@@ -13,7 +13,8 @@ public class LeetCode003 {
             if(window.containsKey(chari)){
                 int repeatIndex = window.get(chari);
                 // abba second a index=0，but from=2
-                from=repeatIndex+1>from?repeatIndex+1:from;
+                from = Math.max(repeatIndex+1,from);
+//                from=repeatIndex+1>from?repeatIndex+1:from;
             }
             end++;
             result = Math.max(result,end-from);
