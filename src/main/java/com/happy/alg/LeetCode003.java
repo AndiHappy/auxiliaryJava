@@ -22,5 +22,4 @@ public class LeetCode003 {
         }
         return result;
     }
-
 }
