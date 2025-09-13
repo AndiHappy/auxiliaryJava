@@ -1,4 +1,5 @@
 package com.happy.alg;
+
 //Given an array nums of n integers and an integer target, find three integers i
 //n nums such that the sum is closest to target. Return the sum of the three integ
 //ers. You may assume that each input would have exactly one solution.
@@ -26,6 +27,47 @@ package com.happy.alg;
 import java.util.Arrays;
 
 public class LeetCode016 {
+
+    class Solution {
+        public int threeSumClosest(int[] nums, int target) {
+            int result = 0;
+            int  distance  = Integer.MAX_VALUE;
+            // 3 <= nums.length <= 10^3,so not check args first sort
+            Arrays.sort(nums);
+            for (int i = 0; i < nums.length; i++) {
+                // skip same elements
+                if(i>0 && nums[i-1] == nums[i]) continue;
+                int j = i+1;int k = nums.length-1;
+                while(j < k){
+                    if(j>i+1 && nums[j-1] == nums[j]){
+                        j++;
+                        continue;
+                    }
+                    int tmpSum = nums[i]+nums[j]+nums[k];
+                    if(tmpSum == target){
+                        return target;
+                    }else if(tmpSum < target){
+                        j++;
+                        int compare = Math.abs(target-tmpSum);
+                        if(compare < distance) {
+                            distance= compare;
+                            result = tmpSum;
+                        }
+                    }else{
+                        k--;
+                        int compare = Math.abs(target-tmpSum);
+                        if(compare < distance) {
+                            distance= compare;
+                            result = tmpSum;
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+    }
+
+
 
     public static int threeSumClosest(int[] nums, int target) {
         Integer result = 0;

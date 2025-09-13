@@ -27,11 +27,47 @@ package com.happy.alg;//Write a function to find the longest common prefix strin
 // 0 <= strs[i].length <= 200 
 // strs[i] consists of only lower-case English letters. 
 // 
-// Related Topics String 
-// 👍 3461 👎 2063
+// Related Topics String
 
 
 public class LeetCode014 {
+
+    class Solution {
+        public String longestCommonPrefix(String[] strs) {
+            if (strs == null || strs.length == 0) return "";
+            if (strs.length == 1) return strs[0];
+
+            StringBuilder result = new StringBuilder();
+            char[] stand = strs[0].toCharArray();
+            for (int i = 0; i < stand.length; i++) {
+                char tmp = stand[i];
+                for (int j = 0; j < strs.length; j++) {
+                    if (i < strs[j].length() && strs[j].charAt(i) == tmp){
+                        continue;
+                    }else{
+                        return result.toString();
+                    }
+                }
+                result.append(tmp);
+            }
+            return result.toString();
+        }
+    }
+
+    public static void main(String[] args) {
+        LeetCode014 l = new LeetCode014();
+        LeetCode014.Solution s = l.new Solution();
+        System.out.println(s.longestCommonPrefix(new String[]{"flower","flow","flight"}));
+        System.out.println(s.longestCommonPrefix(new String[]{"dog","racecar","car"}));
+    }
+
+
+
+
+
+
+
+
     public static String longestCommonPrefix(String[] strs) {
         if(strs==null || strs.length==0) return "";
         if (strs.length == 1)
@@ -57,9 +93,5 @@ public class LeetCode014 {
 
     }
 
-    public static void main(String[] args) {
-        System.out.println("hello holiday");
 
-        System.out.println(longestCommonPrefix(new String[]{"MLC"}));
-    }
 }

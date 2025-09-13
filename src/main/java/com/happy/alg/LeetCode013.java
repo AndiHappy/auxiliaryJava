@@ -84,7 +84,6 @@ import java.util.Map;
 // 👍 2800 👎 3846
 
 public class LeetCode013 {
-
     // s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
     static Map<Character, Integer> comvertMap = new HashMap<Character, Integer>();
     static {
@@ -97,6 +96,26 @@ public class LeetCode013 {
         comvertMap.put('D', 500);
         comvertMap.put('M', 1000);
     }
+    class Solution {
+        public  int romanToInt(String s) {
+            // special case
+            if (s == null || s.trim().length() == 0)
+                return 0;
+            char[] tmp = s.toCharArray();
+            int result = 0;
+            int cur = 0;
+            while(cur < tmp.length){
+                char tmpchar = tmp[cur];
+                char tmpafter = cur + 1 >= tmp.length ? 'a' : tmp[cur + 1];
+                //根据后一个字符的大小，决定是加还是减
+                result = (comvertMap.get(tmpchar) >= comvertMap.get(tmpafter)) ? (result + comvertMap.get(tmpchar))
+                        : (result - comvertMap.get(tmpchar));
+                cur++;
+            }
+            return  result;
+        }
+    }
+
 
     public static int romanToInt(String s) {
         char[] tmp = s.toCharArray();
@@ -112,7 +131,7 @@ public class LeetCode013 {
 
     }
 
-    public static void main(String[] args) {
+    static public void main(String[] args) {
         
         System.out.println("hello holiday");
 
