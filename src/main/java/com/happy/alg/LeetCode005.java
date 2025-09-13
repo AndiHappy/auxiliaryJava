@@ -40,37 +40,41 @@ package com.happy.alg;//Given a string s, return the longest palindromic substri
 
 public class LeetCode005 {
 
-    public static String longestPalindrome(String s) {
-        if (s == null || s.length() < 2)
-            return s;
-        int max = 0, from = 0;
-        for (int i = 0; i < s.length(); i++) {
-            int len = findLongestPalindrome(s, i, i);
-            if (max < len) {
-                max = len;
-                from = i - (len - 1);
-            }
-            int len2 = findLongestPalindrome(s, i, i + 1);
-            if (max < len2) {
-                max = len2;
-                from = i - (len2 - 1);
-            }
-        }
-        return s.substring(from, from + 2 * max - 1);
-    }
 
-    private static int findLongestPalindrome(String s, int i, int i2) {
-        int length = 0;
-        while (i > -1 && i2 < s.length()) {
-            if (s.charAt(i) == s.charAt(i2)) {
-                length++;
-            } else {
-                break;
+    class Solution {
+        // Longest Palindromic Substring
+        public String longestPalindrome(String s) {
+            if (s == null || s.length() < 2)
+                return s;
+            int max = 0, from = 0;
+            for (int i = 0; i < s.length(); i++) {
+                int len = findLongestPalindrome(s, i, i);
+                if (len > max) {
+                    max = len;
+                    from = i - (len/2);
+                }
+                int len2 = findLongestPalindrome(s, i, i + 1);
+                if (len2 > max) {
+                    max = len2;
+                    from = i - (len2/2 - 1);
+                }
             }
-            i--;
-            i2++;
+            return s.substring(from, from + max);
         }
-        return length;
+
+        private static int findLongestPalindrome(String s, int i, int j) {
+            int length = 0;
+            while (i > -1 && j < s.length()) {
+                if (s.charAt(i) == s.charAt(j)) {
+                    length = j-i+1 ;
+                } else {
+                    break;
+                }
+                i--;
+                j++;
+            }
+            return length;
+        }
     }
 
     public static String longestPalindrome_dp(String s) {
@@ -94,11 +98,16 @@ public class LeetCode005 {
     }
 
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("cabac"));
+        LeetCode005 leetCode005 = new LeetCode005();
+        LeetCode005.Solution solution = leetCode005.new Solution();
+        System.out.println(solution.longestPalindrome("cabac"));
+        System.out.println(longestPalindrome_dp("cabac"))
+        ;
         System.out.println(longestPalindrome_dp("cabac"));
-        System.out.println(longestPalindrome("caddac"));
-        System.out.println(longestPalindrome_dp("cabac"));
-        System.out.println(longestPalindrome("babad"));
+        System.out.println(solution.longestPalindrome("cabac"));
+
         System.out.println(longestPalindrome_dp("babad"));
+        System.out.println(solution.longestPalindrome("babad"));
+
     }
 }

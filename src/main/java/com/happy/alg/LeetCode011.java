@@ -51,6 +51,48 @@ package com.happy.alg;//Given n non-negative integers a1, a2, ..., an , where ea
 
 public class LeetCode011 {
 
+    class Solution2 {
+        public int maxArea(int[] height) {
+            int i = 0, j = height.length - 1;
+            int capacity = 0;
+            while (i < j) {
+                int c = Math.min(height[i], height[j]) * (j - i);
+                capacity = Math.max(capacity, c);
+
+                if (height[i] <= height[j]) {
+                    int a = height[i];
+                    while (i < j && height[i] <= a) {
+                        i++;
+                    }
+                } else {
+                    int b = height[j];
+                    while (i < j && height[j] <= b) {
+                        j--;
+                    }
+                }
+            }
+            return capacity;
+        }
+    }
+
+
+    class Solution {
+        public int maxArea(int[] height) {
+            // special case
+            if (height == null || height.length <2) return 0;
+            int max = 0; int from = 0;int to = height.length-1;
+            while (from < to){
+                max = Math.max(max, Math.min(height[from],height[to])*(to-from));
+                if (height[from] > height[to] ){
+                    to--;
+                }else{
+                    from++;
+                }
+            }
+            return max;
+        }
+    }
+
     public static int maxArea(int[] height) {
         if(height == null || height.length <2) return 0;
         int max = 0; int from = 0;int to = height.length-1;

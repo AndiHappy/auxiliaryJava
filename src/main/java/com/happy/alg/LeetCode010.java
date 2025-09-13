@@ -72,7 +72,6 @@ public class LeetCode010 {
         boolean[][] dp = new boolean[s.length()+1][p.length()+1];
         // init 
         dp[0][0] = true;
-
         // dp[i][0] is false represent:s="ssdd",p="",so is false;
         //init: dp[0][j]
         for(int j = 1;j< dp[0].length ; j++){
@@ -93,7 +92,6 @@ public class LeetCode010 {
                 if(p.charAt(j-1) == '*'){
                     // for example (aa ,a*)  or (aa ,.*)
                     // i j 第几个字符，在dp的数组中指代，所以在s,p的下标就是i-1,j-1
-
                     if(s.charAt(i-1) == p.charAt(j-2) || p.charAt(j-1) == '.' ){
                         dp[i][j] = dp[i-1][j-1];
                     }else{
@@ -102,7 +100,6 @@ public class LeetCode010 {
                         // dp[i-1][j], a* means "aa"
                         dp[i][j] = dp[i][j-2] || dp[i][j-1] || dp[i-1][j];
                     }
-
                 }
             }
         }

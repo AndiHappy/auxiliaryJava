@@ -12,6 +12,38 @@ public class LeetCode002 {
         return new ListNode(sum%10,addTwoNumbers(l1!=null?l1.next:null,l2!=null?l2.next:null));
     }
 
+    class Solution {
+        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+            if(l1 == null) return l2;
+            if(l2 == null) return l1;
+            ListNode dummy = new ListNode(0);
+            ListNode p = l1, q = l2, curr = dummy;
+            int carry = 0;
+            while (p != null || q != null) {
+                if(p == null && carry == 0 ){
+                    curr.next = q;
+                    break;
+                }
+                if (q == null && carry == 0){
+                    curr.next = p;
+                    break;
+                }
+                int x = (p != null)? p.val:0;
+                int y = (q != null)? q.val:0;
+                int sum = carry+x+y;
+                curr.next = new ListNode(sum%10);
+                carry = sum/10;
+                p = (p != null)? p.next:null;
+                q = (q != null)? q.next:null;
+                curr = curr.next;
+            }
+            if (carry > 0 ){
+                curr.next = new ListNode(carry);
+            }
+            return dummy.next;
+        }
+    }
+
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         // head 循环的过程中保持不变

@@ -44,6 +44,29 @@ package com.happy.alg;//Determine whether an integer is a palindrome. An integer
 
 
 public class LeetCode009 {
+
+    class Solution {
+        public boolean isPalindrome(int x) {
+            if (x < 0)
+                return false;
+            if (x == 0)
+                return true;
+            if (x%10 == 0)
+                return false;
+
+            int result = 0;
+            int cur = x;
+            while(cur > 0) {
+                int tmp = cur%10;
+                result = 10*result+tmp;
+                cur = cur/10;
+            }
+            return result == x;
+        }
+    }
+
+
+
     public static boolean isPalindrome(int x) {
         // From left to right, it reads -121. From right to left, it becomes 121-.
         // Therefore it is not a palindrome.
@@ -64,6 +87,9 @@ public class LeetCode009 {
     }
 
     public static void main(String[] args) {
+        LeetCode009 leetCode009 = new LeetCode009();
+        LeetCode009.Solution s = leetCode009.new Solution();
+        System.out.println(s.isPalindrome(121));
         System.out.println(isPalindrome(12321));
         System.out.println(isPalindrome(12321));
     }

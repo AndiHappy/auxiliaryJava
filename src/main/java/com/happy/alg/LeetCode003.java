@@ -5,6 +5,45 @@ import java.util.Map;
 
 public class LeetCode003 {
 
+    class Solution {
+        public int lengthOfLongestSubstring(String s) {
+            if (s == null) {
+                return 0;
+            }
+            if (s.length() <= 1) {
+                return s.length();
+            }
+
+            int begin = 0;
+            int result = 1;
+            Map<Character,Integer> window = new HashMap<>(s.length());
+            window.put(s.charAt(0),begin);
+            for (int i = 1; i < s.length() ; i++) {
+                Character c = s.charAt(i);
+                //如果不包含c
+                if (!window.containsKey(c)) {
+                    window.put(c,i);
+                    if (result < (i - begin + 1)) {
+                        result = i - begin + 1;
+                    }
+                }else{
+                    //包含c
+                    Integer repeatIndex = window.get(c);
+                    //更新begin
+                    if(repeatIndex>=begin){
+                        begin=repeatIndex+1;
+                    }
+                    window.put(c,i);
+                    if (result < (i - begin + 1)) {
+                        result = i - begin + 1;
+                    }
+                }
+            }
+            return result;
+        }
+    }
+
+
     public static int lengthOfLongestSubstring(String s) {
         int result = 0;int from=0,end=0;
         Map<Character,Integer> window = new HashMap<>();

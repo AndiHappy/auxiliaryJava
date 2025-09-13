@@ -79,6 +79,47 @@ package com.happy.alg;//Implement atoi which converts a string to an integer.
 
 public class LeetCode008 {
 
+    class Solution {
+        public int myAtoi(String s) {
+            // exception judge
+            if (s == null || s.length() == 0)
+                return 0;
+            char[] sa = s.toCharArray();
+            //Whitespace: Ignore any leading whitespace (" ").
+            int result = 0;
+            int flag = 1;
+            int cur = 0;
+            while (cur < s.length() && sa[cur] == ' ')
+                cur++;
+            // Signedness: Determine the sign by checking if the next character is '-' or '+', assuming positivity if neither present.
+            if (cur < s.length() && sa[cur] == '-') {
+                flag = -1;
+                cur++;
+            } else if (cur < s.length() && (sa[cur] == '+' || Character.isDigit(sa[cur]))) {
+                flag = 1;
+                if (sa[cur] == '+')
+                    cur++;
+            }
+
+            // Conversion: Read the integer by skipping leading zeros until a non-digit character is encountered or
+            // the end of the string is reached. If no digits were read, then the result is 0.
+
+            while (cur < s.length() && Character.isDigit(sa[cur])) {
+                int tmp = sa[cur] - '0';
+                // Range Checking: If the integer exceeds the 32-bit signed integer range [-2^31, 2^31 - 1], clamp it to the nearest bound.
+                if ((Integer.MAX_VALUE - tmp) / 10 < result) {
+                    return flag > 0 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+                } else {
+                    result = result * 10 + tmp;
+                }
+                cur++;
+            }
+            return flag*result;
+        }
+    }
+
+
+
     public static int myAtoi(String s) {
         // exception judge
         if (s == null || s.length() == 0)
@@ -122,11 +163,23 @@ public class LeetCode008 {
     }
 
     public static void main(String[] args) {
+        LeetCode008 leetcode = new LeetCode008();
+        LeetCode008.Solution s = leetcode.new Solution();
         System.out.println(myAtoi("   -3293923"));
+        System.out.println(s.myAtoi("   -3293923"));
+
         System.out.println(myAtoi("  00033223"));
+        System.out.println(s.myAtoi("  00033223"));
         System.out.println(myAtoi("2147483647"));
+        System.out.println(s.myAtoi("2147483647"));
+
         System.out.println(myAtoi("-2147483648"));
+        System.out.println(s.myAtoi("-2147483648"));
+
         System.out.println(myAtoi("2147483648"));
+        System.out.println(s.myAtoi("2147483648"));
+
         System.out.println(myAtoi("-2147483649"));
+        System.out.println(s.myAtoi("-2147483649"));
     }
 }

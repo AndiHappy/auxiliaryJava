@@ -54,6 +54,36 @@ package com.happy.alg;//The string "PAYPALISHIRING" is written in a zigzag patte
 //
 
 public class LeetCode006 {
+
+    class Solution {
+        //折叠string
+        public String convert(String s, int numRows) {
+            if (s == null || s.length() <= numRows || numRows == 1)
+                return s;
+            StringBuilder[] res = new StringBuilder[numRows];
+            for (int i = 0; i < res.length; i++) {
+                res[i] = new StringBuilder();
+            }
+
+            for (int i = 0; i < s.length();) {
+                for (int j = 0; j < numRows && i < s.length(); j++) {
+                    res[j].append(s.charAt(i));
+                    i++;
+                }
+
+                for (int j = numRows - 2; j > 0 && i < s.length(); j--) {
+                    res[j].append(s.charAt(i));
+                    i++;
+                }
+            }
+
+            StringBuilder result = new StringBuilder();
+            for (StringBuilder sb : res) {
+                result.append(sb.toString());
+            }
+            return result.toString();
+        }
+    }
     
     public String convert(String s, int numRows) {
         if (s == null || s.length() <= numRows)
@@ -78,6 +108,13 @@ public class LeetCode006 {
             res += builders[jj].toString();
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        LeetCode006 T = new LeetCode006();
+        System.out.println(T.convert("PAYPALISHIRING", 4));
+        LeetCode006.Solution s = T.new Solution();
+        System.out.println(s.convert("PAYPALISHIRING", 4));
     }
     
 }
