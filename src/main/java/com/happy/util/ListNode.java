@@ -18,6 +18,17 @@ public class ListNode {
         this.next = next;
     }
 
+    public static ListNode build(int[] vals){
+        if(vals == null || vals.length == 0) return null;
+        ListNode head = new ListNode(vals[0]);
+        ListNode cur = head;
+        for(int i=1;i<vals.length;i++){
+            cur.next = new ListNode(vals[i]);
+            cur = cur.next;
+        }
+        return head;
+    }
+
     @Override
     public String toString() {
         return "ListNode{" +
